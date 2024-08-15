@@ -1,0 +1,64 @@
+---
+
+- name: Example Ansible playbook for variables
+  hosts: all
+  become: yes
+  remote_user: centos
+  roles:
+    - custom-role
+
+vars:
+  # 1. string variables
+  Main_playbook_variables: "Hello world in my playboo!"
+
+  # 2. boolen variables
+  is_enabled: true
+
+  # 3. List variables
+  fruits:
+    - apple
+    - banana
+    - orange
+  
+  # 4. Dictionary variables
+  fruit_price:
+    apple: 0.5
+    banana: 1.0
+    orange: 1.5
+
+  # 5. Referancing Nested variables
+  fruit_basket:
+    - name: JP
+      fruits:
+        - apple
+        - orange
+    - name: KASHMIMONI
+      fruits:
+        - banana
+        - apple
+  tasks:
+    - name: string vaiable from - main_playbook_variable
+      debug:
+        var: Main_playbook_variables
+
+    - name: boolen variable 
+      debug:
+        msg: "variables is true"
+      when: is_enabled
+
+    - name: list variables from - fruits
+      debug:
+        vars: fruit_price.enabled
+    
+    - name: Get the price of an apple
+      command: echo "{{fruit_price['apple']}}"
+      register: apple_price_as_registred_var
+
+    - name: print the value of registed variable
+      debug:
+        var: apple_price_as_registred_var.stdout
+    
+    - name: Get the value of apple from the nested variable
+      debug:
+        var: fruit_price[fruit_basket[0].fruits[0]]
+  
