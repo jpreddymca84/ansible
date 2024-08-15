@@ -1,7 +1,6 @@
 ---
 
 - name: install packages from python env
-  ansible.builtin.package:
   become: yes
   apt:
     name:
@@ -14,5 +13,6 @@
     state: directory
 
 - name: install apache2
+  ansible.builtin.package:
   become: yes
   apt: name=apache2 update_cache=yes state=latest
