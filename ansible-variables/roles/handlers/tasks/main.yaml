@@ -1,0 +1,19 @@
+---
+
+- name: update yum an chche and install nginx
+  yum:
+    name: nginx
+    state: latest
+    update_cache: yes
+
+- name: index.html copy
+  template:
+    src: index.html
+    dest: /usr/share/nginx/html/index.html
+
+- name: updated.html copy
+  template:
+    src: updated.html
+    dest: /usr/share/nginx/html/index.html
+  notify:
+    - Restart Nginx
