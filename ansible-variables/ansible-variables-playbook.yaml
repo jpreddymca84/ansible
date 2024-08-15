@@ -9,96 +9,96 @@
 
   vars:
     # 1. string variables
-    main_playbook_variables: "Hello world in my playboo!"
+    main_playbook_variables: "Hello world in my playbook!"
 
-    # # 2. boolen variables
-    # is_enabled: true
+    # 2. boolen variables
+    is_enabled: true
 
-    # # 3. List variables
-    # fruits:
-    #   - apple
-    #   - banana
-    #   - orange
+    # 3. List variables
+    fruits:
+      - apple
+      - banana
+      - orange
     
-    # # 4. Dictionary variables
-    # fruit_price:
-    #   apple: 0.5
-    #   banana: 1.0
-    #   orange: 1.5
+    # 4. Dictionary variables
+    fruit_price:
+      apple: 0.5
+      banana: 1.0
+      orange: 1.5
 
-    # # 5. Referancing Nested variables
-    # fruit_basket:
-    #   - name: JP
-    #     fruits:
-    #       - apple
-    #       - orange
-    #   - name: KASHMIMONI
-    #     fruits:
-    #       - banana
-    #       - apple
+    # 5. Referancing Nested variables
+    fruit_basket:
+      - name: JP
+        fruits:
+          - apple
+          - orange
+      - name: KASHMIMONI
+        fruits:
+          - banana
+          - apple
 
-    # # 6. Variable from the my-vars.yml
-    # custom_vars_files:
-    # - my-vars.yml     
+    # 6. Variable from the my-vars.yml
+    custom_vars_files:
+    - my-vars.yml     
 
-    custom_tasks:
+    tasks:
     - name: string vaiable from - main_playbook_variable
       debug:
         vars: main_playbook_variables
 
-    # - name: boolen variable 
-    #   debug:
-    #     msg: "variables is true"
-    #   when: is_enabled
+    - name: boolen variable 
+      debug:
+        msg: "variables is true"
+      when: is_enabled
 
-    # - name: List variable - Print list of fruits
-    #   debug:
-    #     vars: fruits
+    - name: List variable - Print list of fruits
+      debug:
+        vars: fruits
 
-    # - name: List variable - Reference individual item in list
-    #   debug:
-    #     vars: fruits[0]
+    - name: List variable - Reference individual item in list
+      debug:
+        vars: fruits[0]
 
-    # - name: Dictionary Variable - Accessing all dictionary variable
-    #   debug:
-    #     vars: fruit_prices
+    - name: Dictionary Variable - Accessing all dictionary variable
+      debug:
+        vars: fruit_prices
 
-    # - name: Dictionary Variable - Accessing individual specific fields
-    #   debug:
-    #     vars: fruit_prices.apple
+    - name: Dictionary Variable - Accessing individual specific fields
+      debug:
+        vars: fruit_prices.apple
 
-    # - name: list variables from - fruits
-    #   debug:
-    #     vars: fruit_price.enabled
+    - name: list variables from - fruits
+      debug:
+        vars: fruit_price.enabled
     
-    # - name: Get the price of an apple
-    #   command: echo "{{fruit_price['apple']}}"
-    #   register: apple_price_as_registred_var
+    - name: Get the price of an apple
+      command: echo "{{fruit_price['apple']}}"
+      register: apple_price_as_registred_var
 
-    # - name: print the value of registed variable
-    #   debug:
-    #     vars: apple_price_as_registred_var.stdout
+    - name: print the value of registed variable
+      debug:
+        vars: apple_price_as_registred_var.stdout
     
-    # - name: Get the value of apple from the nested variable
-    #   debug:
-    #     vars: fruit_price[fruit_basket[0].fruits[0]]
+    - name: Get the value of apple from the nested variable
+      debug:
+        vars: fruit_price[fruit_basket[0].fruits[0]]
   
-    # # Jinja 2 filter on variables
-    # - name: Using Jinja 2 filters on variables
-    #   debug:
-    #     vars: fruit_prices.keys() | list | map('upper') | list
+    # Jinja 2 filter on variables
+    - name: Using Jinja 2 filters on variables
+      debug:
+        vars: fruit_prices.keys() | list | map('upper') | list
 
-    # # Accessing variable inside playbook from my-vars.yml
-    # - name: Get the value of variable from my-vars.yml
-    #   debug:
-    #     vars: vars_from_my_vars_yml
+    # Accessing variable inside playbook from my-vars.yml
+    - name: Get the value of variable from my-vars.yml
+      debug:
+        vars: vars_from_my_vars_yml
 
-    # #Defining and accessing the variable at RunTime
-    # - name: Get the value from run time
-    #   debug:
-    #     vars: version
+    #Defining and accessing the variable at RunTime
+    - name: Get the value from run time
+      debug:
+        vars: version
 
-    # #Defining and accessing the variable at RunTime
-    # - name: Print the value of variable when var file is passed at run time
-    #   debug:
-    #     vars: other_variable 
+    #Defining and accessing the variable at RunTime
+    - name: Print the value of variable when var file is passed at run time
+      debug:
+        vars: other_variable 
