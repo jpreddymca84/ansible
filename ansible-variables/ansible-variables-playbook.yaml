@@ -9,7 +9,7 @@
 
   vars:
     # 1. string variables
-    Main_playbook_variables: "Hello world in my playboo!"
+    main_playbook_variables: "Hello world in my playboo!"
 
     # 2. boolen variables
     is_enabled: true
@@ -36,16 +36,36 @@
         fruits:
           - banana
           - apple
-          
+
+    # 6. Variable from the my-vars.yml
+    vars_files:
+      - my-vars.yml     
+
     tasks:
       - name: string vaiable from - main_playbook_variable
         debug:
-          var: Main_playbook_variables
+          var: main_playbook_variables
 
       - name: boolen variable 
         debug:
           msg: "variables is true"
         when: is_enabled
+
+      - name: List variable - Print list of fruits
+        debug:
+          var: fruits
+
+      - name: List variable - Reference individual item in list
+        debug:
+          var: fruits[0]
+
+      - name: Dictionary Variable - Accessing all dictionary variable
+        debug:
+          var: fruit_prices
+
+      - name: Dictionary Variable - Accessing individual specific fields
+        debug:
+          var: fruit_prices.apple
 
       - name: list variables from - fruits
         debug:
