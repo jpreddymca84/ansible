@@ -5,7 +5,7 @@
   become: yes
   remote_user: centos
   roles:
-    - custom-role
+    - handlers
 
 vars:
   # 1. string variables
