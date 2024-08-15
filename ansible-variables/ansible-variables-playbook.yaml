@@ -44,11 +44,11 @@
   tasks:
   - name: string vaiable from - main_playbook_variable
     debug:
-      msg: main_playbook_variables
+      var: main_playbook_variables
 
   - name: boolen variable 
     debug:
-      msg: "variables is true"
+      var: "variables is true"
     when: is_enabled
 
   - name: List variable - Print list of fruits
@@ -61,15 +61,15 @@
 
   - name: Dictionary Variable - Accessing all dictionary variable
     debug:
-      vars: fruit_prices
+      var: fruit_prices
 
   - name: Dictionary Variable - Accessing individual specific fields
     debug:
-      vars: fruit_prices.apple
+      var: fruit_prices.apple
 
   - name: list variables from - fruits
     debug:
-      vars: fruit_price.enabled
+      var: fruit_price.enabled
   
   - name: Get the price of an apple
     command: echo "{{fruit_price['apple']}}"
@@ -77,28 +77,28 @@
 
   - name: print the value of registed variable
     debug:
-      vars: apple_price_as_registred_var.stdout
+      var: apple_price_as_registred_var.stdout
   
   - name: Get the value of apple from the nested variable
     debug:
-      vars: fruit_price[fruit_basket[0].fruits[0]]
+      var: fruit_price[fruit_basket[0].fruits[0]]
 
   # Jinja 2 filter on variables
   - name: Using Jinja 2 filters on variables
     debug:
-      vars: fruit_prices.keys() | list | map('upper') | list
+      var: fruit_prices.keys() | list | map('upper') | list
 
   # Accessing variable inside playbook from my-vars.yml
   - name: Get the value of variable from my-vars.yml
     debug:
-      vars: vars_from_my_vars_yml
+      var: vars_from_my_vars_yml
 
   #Defining and accessing the variable at RunTime
   - name: Get the value from run time
     debug:
-      vars: version
+      var: version
 
   #Defining and accessing the variable at RunTime
   - name: Print the value of variable when var file is passed at run time
     debug:
-      vars: other_variable 
+      var: other_variable 
