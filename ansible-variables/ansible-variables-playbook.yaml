@@ -11,14 +11,14 @@
     # 1. string variables
     main_playbook_variables: "Hello world in my playbook!"
 
-    # 2. boolen variables
-    is_enabled: true
+    # # 2. boolen variables
+    # is_enabled: true
 
-    # 3. List variables
-    fruits:
-      - apple
-      - banana
-      - orange
+    # # 3. List variables
+    # fruits:
+    #   - apple
+    #   - banana
+    #   - orange
     
   #   # 4. Dictionary variables
   #   fruit_price:
@@ -44,16 +44,16 @@
   tasks:
   - name: string vaiable from - main_playbook_variable
     debug:
-      vars: main_playbook_variables
+      msg: main_playbook_variables
 
-  - name: boolen variable 
-    debug:
-      msg: "variables is true"
-    when: is_enabled
+  # - name: boolen variable 
+  #   debug:
+  #     msg: "variables is true"
+  #   when: is_enabled
 
-  - name: List variable - Print list of fruits
-    debug:
-      vars: fruits
+  # - name: List variable - Print list of fruits
+  #   debug:
+  #     vars: fruits
 
   # - name: List variable - Reference individual item in list
   #   debug:
