@@ -38,10 +38,10 @@
           - apple
 
     # 6. Variable from the my-vars.yml
-    vars_files:
+    custom_vars_files:
     - my-vars.yml     
 
-    tasks:
+    custom_tasks:
     - name: string vaiable from - main_playbook_variable
       debug:
         vars: main_playbook_variables
