@@ -5,7 +5,7 @@
   become: yes
   remote_user: centos
   roles:
-    - handlers
+    - python
 
   vars:
     # 1. string variables
