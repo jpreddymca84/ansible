@@ -12,7 +12,7 @@
     path: ./basic-http-server
     state: directory
 
-- name: install apache2
+- name: install httpd
   become: yes
   yum:
     name: httpd
