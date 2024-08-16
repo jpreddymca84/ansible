@@ -10,7 +10,7 @@
   debug:
     var: ansible_facts['kernel_version']
   when:
-    - ansible_facts['os-family'] == "centos"
+    - ansible_facts['os-family'] == "RedHat"
     - ansible_facts['distribution_major_version'] == "20"
 
 
