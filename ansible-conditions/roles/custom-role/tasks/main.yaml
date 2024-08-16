@@ -5,4 +5,12 @@
     state: present
   when: install_httpd_flag
 
-  
+  # putting multiple conditions using ansible fats
+  - name: multiple conditions using ansible facts
+    debug:
+      var: ansible_facts['kernel_version']
+    when:
+      - ansible_facts['os-family'] == "centos"
+      - ansible_facts['distribution_major_version'] == "20"
+
+
