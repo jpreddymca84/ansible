@@ -11,10 +11,10 @@
     var: ansible_facts['kernel_version']
   when:
     - ansible_facts['os_family'] == "RedHat"
-    - ansible_facts['distribution_major_version'] == "20"
+    - ansible_facts['distribution_major_version'] == "8"
 
 # setting complex condition
 - name: complex condition using and condition
   debug:
     var: ansible_facts['kernel_version']
-  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] | int >= 20
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] | int >= 8
