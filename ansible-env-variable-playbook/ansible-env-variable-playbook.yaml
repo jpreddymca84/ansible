@@ -3,6 +3,7 @@
 - name: Example Ansible playbook for Env variable
   hosts: all
   become: yes
+  remote_user: centos
   role:
     - custom-role
 
