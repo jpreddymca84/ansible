@@ -18,3 +18,13 @@
   debug:
     var: ansible_facts['kernel_version']
   when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] | int >= 8
+
+  # register a variable, and evaluate the value using when conditins
+  - name: regieter a variable
+    ansible.builtin.command: cat /home/centos/test-file.txt
+    register: test_file_content
+
+  - name: use the variable in conditional statement
+    debug:
+      var: test_file_content.stdout
+    when: test_file_content.stdout.find('hi') != 1
