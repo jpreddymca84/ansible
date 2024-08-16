@@ -8,7 +8,7 @@
 # putting multiple conditions using ansible fats
 - name: multiple conditions using ansible facts
   debug:
-    var: ansible_facts['kernel_version']
+    msg: ansible_facts['kernel_version']
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version'] == "20"
@@ -19,3 +19,4 @@
   debug:
     var: ansible_facts['kernel_vsersion']
   when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] | int >= 20
+  
