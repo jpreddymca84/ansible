@@ -1,22 +1,20 @@
-# boolen condition installing http server
+# boolean condition for installing http server
 - name: installing httpd
   yum:
     name: httpd
     state: present
   when: install_httpd_flag
 
-# putting multiple conditions using ansible fats
+# putting multiple conditions using ansible facts
 - name: multiple conditions using ansible facts
   debug:
-    msg: ansible_facts['kernel_version']
+    var: ansible_facts['kernel_version']
   when:
     - ansible_facts['os_family'] == "RedHat"
     - ansible_facts['distribution_major_version'] == "20"
 
-
 # setting complex condition
-- name: complex conditon using and condition
+- name: complex condition using and condition
   debug:
-    var: ansible_facts['kernel_vsersion']
+    var: ansible_facts['kernel_version']
   when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] | int >= 20
-  
