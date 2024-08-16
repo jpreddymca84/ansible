@@ -18,4 +18,4 @@
 - name: complex conditon using and condition
   debug:
     var: ansible_facts['kernel_vsersion']
-  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distrubution_major_version'] | int >= 20
+  when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution_major_version'] | int >= 20
