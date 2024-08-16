@@ -1,0 +1,26 @@
+---
+
+- name: Example Ansible playbook for Env variable
+  hosts: all
+  become: yes
+  role:
+    - custom-role
+
+  environment:
+    EXAMPLE: "JP's World"
+    MY_VAR1: "variable value"
+
+  tasks:
+    # environment variable at playbook level
+    - name: environment variable at playbook level
+      ansible.builtin.command: " echo $EXAMPLE $MY_VAR1"
+
+    # environment variable only task level
+    - name: environment variable only task level
+      environment:
+        MY_TASK_LEVEL_VARIABLE: "Hello World! "
+      ansible.builtin.command: " echo $MY_TASK_LEVEL_VARIABLE "
+
+    # testing environment variable
+    - name: testing both palybook and environment level with task level
+      ansible.builtin.command: "echo $EXAMLE $MY_VAR1 $MY_TASK_LEVEL_VARIABLE"
