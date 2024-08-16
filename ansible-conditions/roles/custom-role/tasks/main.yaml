@@ -1,0 +1,8 @@
+# boolen condition installing http server
+- name: installing httpd
+  yum:
+    name: httpd
+    state: present
+  when: install_httpd_flag
+
+  
