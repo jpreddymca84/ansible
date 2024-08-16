@@ -4,7 +4,7 @@
   hosts: all
   become: yes
   remote_user: centos
-  role:
+  roles:
     - custom-role
 
   environment:
