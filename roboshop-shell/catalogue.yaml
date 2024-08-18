@@ -29,3 +29,33 @@
       src: /tmp/catalogue.zip
       dest: /app
       remote_src: yes
+
+  - name: install depedensis
+    ansible.builtin.command: npm install
+      args:
+        chdir: /app
+
+  - name: copy category services
+    ansible.builtin.copy:
+      src: catologue.service
+      dest: /etc/systemd/system/catalogue.service
+
+  - name: deamon reloaded
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+
+  - name: copy mongodb repo
+    ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+    
+  - name: Install mongodb client
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present
+
+  - name: start & enable catalogue services
+    ansible.builtin.service:
+      name: catalogue
+      state: started
+      enabled: yes
