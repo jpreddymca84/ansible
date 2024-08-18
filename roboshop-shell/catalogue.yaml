@@ -60,26 +60,26 @@
       state: started
       enabled: yes
 
-  - name: get the category catalogue count
+  # - name: get the category catalogue count
+  #   ansible.builtin.command: mongo --host mongodb.jpdaws.cloud --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+  #   register: product_count
+
+  # - name: load catalogue data
+  #   ansible builtin.command: mongo --host mongodb.jpdaws.cloud < /app/schema/catalogue.js 
+  #   when: product_count.stdout == "0"
+
+
+  - name: get the categories count
     ansible.builtin.command: mongo --host mongodb.jpdaws.cloud --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
     register: product_count
 
+  # - name: print the count
+  #   ansible.builtin.debug:
+  #     msg: "product count: {{product_count}}"
+
   - name: load catalogue data
-    ansible builtin.command: mongo --host mongodb.jpdaws.cloud < /app/schema/catalogue.js 
-    when: product_count.stdout == "0"
-
-
-  #   - name: get the categories count
-  #   ansible.builtin.command: mongo --host mongodb.daws76s.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
-  #   register: product_count
-
-  # # - name: print the count
-  # #   ansible.builtin.debug:
-  # #     msg: "product count: {{product_count}}"
-
-  # - name: load catalogue data
-  #   ansible.builtin.command: mongo --host mongodb.daws76s.online < /app/schema/catalogue.js
-  #   when: product_count.stdout == "0" # keep double quotes
+    ansible.builtin.command: mongo --host mongodb.jpdaws.cloud < /app/schema/catalogue.js
+    when: product_count.stdout == "0" # keep double quotes
 
   - name: restart catalogue service
     ansible.builtin.service:
