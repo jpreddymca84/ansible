@@ -61,7 +61,7 @@
       enabled: yes
 
   - name: get the category catalogue count
-    ansible.builtin.shell: mongo --host mongodb.jpdaws.cloud --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+    ansible.builtin.command: mongo --host mongodb.jpdaws.cloud --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
     register: product_count
 
   - name: load catalogue data
