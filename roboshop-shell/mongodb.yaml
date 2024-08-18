@@ -1,0 +1,9 @@
+- main: mongodb 
+  hosts: mongodb
+  become: yes
+  tasks:
+  - main: Install mongodb
+    ansible.builtin.package:
+    name: mongodb
+    state: present
+    
