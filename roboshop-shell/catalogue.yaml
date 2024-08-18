@@ -59,3 +59,16 @@
       name: catalogue
       state: started
       enabled: yes
+
+  - name: get the categorycatalogue count
+    ansible.builtin.command: mongo --host mongodb.jpdaws.cloud --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+    register: product_count
+
+  - name: load catalogue count
+    ansible builtin.command: mongo --host mongodb.jpdaws.cloud </app/schema/catalogue.js
+    when: product_count.stdout == 0
+
+  - name: restart catalogue service
+    ansible.builtin.service:
+      name: catalogue
+      state: restarted
