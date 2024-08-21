@@ -1,5 +1,5 @@
 - name: install payment component
-  hosts: payments
+  hosts: payment
   become: yes
   tasks: 
   - name: install paython 3.6
@@ -27,12 +27,12 @@
 
   - name: download application
     ansible.builtin.get_url:
-      url: https://roboshop-builds.s3.amazonaws.com/payments.zip
+      url: https://roboshop-builds.s3.amazonaws.com/payment.zip
       dest: /tmp
 
   - name: unzip application with app directory
     ansible.builtin.unarchive:
-      src: /tmp/payments.zip
+      src: /tmp/payment.zip
       dest: /app
       remote_src: yes
 
@@ -41,17 +41,17 @@
     args:
       chdir: /app
 
-  - name: Copy payments service
+  - name: Copy payment service
     ansible.builtin.copy:
-      src: payments.service
-      dest: /etc/systemd/system/payments.service
+      src: payment.service
+      dest: /etc/systemd/system/payment.service
 
   - name: deamon realod and start
     ansible.builtin.systemd_service:
       daemon_reload: true
 
-  - name: start and enable payments
+  - name: start and enable payment
     ansible.builtin.service:
-      name: payments
+      name: payment
       state: restarted
       enabled: yes
