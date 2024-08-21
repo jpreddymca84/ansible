@@ -2,7 +2,7 @@
   hosts: redis
   become: yes
   tasks:
-  - nmae: install remi replace
+  - name: install remi replace
     ansible.builtin.dnf:
       name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
       state: present
