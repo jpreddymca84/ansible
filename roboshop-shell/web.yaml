@@ -15,8 +15,8 @@
 
   - name: remoe html directory
     ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent
+      path: /usr/share/nginx/html
+      state: absent
 
   - name: create html diretory
     ansible.builtin.file:
@@ -36,8 +36,8 @@
 
   - name: copy roboshop conf
     ansible.builtin.copy:
-    src: roboshop.conf
-    dest: /etc/nginx/default.d/roboshop.conf 
+      src: roboshop.conf
+      dest: /etc/nginx/default.d/roboshop.conf 
 
   - name: restart nginx server
     ansible.builtin.service:
